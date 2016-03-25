@@ -17,6 +17,11 @@ $ vi app/.bundle/config
 tag | OS | ruby | rails
 --- | --- | --- | ---
 [0.1.0](https://github.com/suzuki-shunsuke/rails.docker/blob/0.1.0/Dockerfile) | alpine 3.3 | 2.3.0 | 4.2.5.2
+[0.1.1](https://github.com/suzuki-shunsuke/rails.docker/blob/0.1.1/Dockerfile) | alpine 3.3 | 2.3.0 | 4.2.5.2
+
+## 0.1.1
+
+Manage bundle config with git.
 
 ## 0.1.0
 

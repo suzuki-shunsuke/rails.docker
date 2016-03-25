@@ -1,0 +1,10 @@
+build-base
+curl-dev
+libxml2-dev
+libxslt-dev
+nodejs
+ruby-dev
+sqlite-dev
+tzdata
+yaml-dev
+zlib-dev

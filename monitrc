@@ -16,7 +16,9 @@
 ##
 ## Start Monit in the background (run as a daemon):
 #
+
 set daemon  30              # check services at 30 seconds intervals
+
 #   with start delay 240    # optional: delay the first check by 4-minutes (by
 #                           # default Monit check immediately after Monit start)
 #
@@ -24,15 +26,17 @@ set daemon  30              # check services at 30 seconds intervals
 ## Set syslog logging. If you want to log to a standalone log file instead,
 ## specify the full path to the log file
 #
-set logfile syslog
+
+set logfile /var/log/monit.log
 
 #
 #
 ## Set the location of the Monit lock file which stores the process id of the
 ## running Monit instance. By default this file is stored in $HOME/.monit.pid
 #
-# set pidfile /var/run/monit.pid
-#
+
+set pidfile /var/run/monit.pid
+
 ## Set the location of the Monit id file which stores the unique id for the
 ## Monit instance. The id is generated and stored on first Monit start. By
 ## default the file is placed in $HOME/.monit.id.

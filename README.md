@@ -2,11 +2,12 @@
 
 Docker Hub Repository: https://hub.docker.com/r/suzukishunsuke/rails/
 
-## 0.2.1
+## 0.2.2
 
 * alpine 3.3
 * ruby 2.3.0
 * monit 5.15
+* WORKDIR: /var/www
 * Data Volumes
   * /etc/monit
   * /var/log
@@ -14,21 +15,27 @@ Docker Hub Repository: https://hub.docker.com/r/suzukishunsuke/rails/
 * EXPOSE: 80
 
 ```
-$ docker run -d -p 3000:80 -v (rails application root directory):/var/www suzukishunsuke/rails:0.2.1
+$ docker run -d --name rails -p 3000:80 -v (rails application root directory):/var/www suzukishunsuke/rails:0.2.2
+$ docker exec rails sh init.sh
+$ docker exec rails monit
 ```
 
-```
-/var/www
-  Gemfile
-  init.sh
-  server.sh
-  apk.list
-  (etc)
-```
-
-example of /var/www/init.sh
+example of rails application root directory
 
 ```
+Gemfile
+init.sh
+apk.list
+(etc)
+```
+
+example of init.sh
+
+```
+#!/bin/sh
+
+set -eu
+
 if which apk
 then
     apk update
@@ -42,13 +49,7 @@ bundle exec rake db:migrate
 bundle exec rake db:seed
 ```
 
-example of /var/www/server.sh
-
-```
-bundle exec rails server -p 80 -b 0.0.0.0
-```
-
-example of /var/www/apk.list
+example of apk.list
 
 ```
 # Required Alpine Linux package list
@@ -66,10 +67,3 @@ libffi
 
 # bash  # comment out
 ```
-
-## 0.1.1
-
-* python 2.7.11
-* pip 8.1.1
-* supervisor 3.2.3
-

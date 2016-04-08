@@ -1,5 +1,6 @@
 FROM ruby:2.3.0-alpine
 COPY monitrc rails.conf /root/
+COPY init.sh /var/
 ENV BUNDLE_APP_CONFIG="/var/www/.bundle" BUNDLE_BIN="/var/www/bin"
 RUN apk update && \
     apk upgrade && \
@@ -15,4 +16,4 @@ RUN apk update && \
 WORKDIR /var/www
 VOLUME /var/www /etc/monit /var/log
 EXPOSE 80
-CMD monit -I
+CMD sh /var/init.sh

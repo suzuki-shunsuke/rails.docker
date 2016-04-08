@@ -1,9 +1,7 @@
-FROM suzukishunsuke/ruby:0.2.0
-ENV BUNDLE_APP_CONFIG="/var/www/.bundle" BUNDLE_BIN="/var/www/bin"
+FROM suzukishunsuke/rails:0.2.0
+COPY monitrc /etc/monit/monitrc
+COPY rails.conf /etc/monit/monit.d
 RUN apk update && \
   apk upgrade && \
-  mkdir /var/www && \
+  chmod 700 /etc/monit/monitrc && \
   rm -rf /var/cache/apk/*
-WORKDIR /var/www
-VOLUME /var/www
-EXPOSE 80

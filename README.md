@@ -2,22 +2,19 @@
 
 Docker Hub Repository: https://hub.docker.com/r/suzukishunsuke/rails/
 
-## 0.2.2
-
 * alpine 3.3
 * ruby 2.3.0
-* monit 5.15
 * WORKDIR: /var/www
 * Data Volumes
-  * /etc/monit
   * /var/log
   * /var/www
-* EXPOSE: 80
+* EXPOSE: 3000
+* USER: alpine(uid=1000, group=wheel, nopassword)
 
 ```
-$ docker run -d --name rails -p 3000:80 -v (rails application root directory):/var/www suzukishunsuke/rails:0.2.2
+$ docker run -d --name rails -p 3000:3000 -v (rails application root directory):/var/www suzukishunsuke/rails:0.3.0
 $ docker exec rails sh init.sh
-$ docker exec rails monit
+$ docker exec rails bundle exec rails server -b 0.0.0.0 -p 3000
 ```
 
 example of rails application root directory
@@ -38,8 +35,8 @@ set -eu
 
 if which apk
 then
-    apk update
-    grep -v "^ *#" apk.list | sed -e "s/ *\(.*\) *#.*/\1/" | xargs apk add
+    sudo apk update
+    grep -v "^ *#" apk.list | sed -e "s/ *\(.*\) *#.*/\1/" | xargs sudo apk add
 fi
 
 bundle config build.nokogiri --use-system-libraries

@@ -6,12 +6,13 @@ RUN apt-get update && \
     rm dumb-init_1.1.1_amd64.deb && \
     useradd -u 1000 -G sudo -m debian && \
     mkdir /var/www && \
+    chown -R debian:debian /var/www && \
     rm -rf /var/lib/apt/lists/*
 VOLUME /var/www /var/log
 COPY sudoers /etc/
 RUN chmod a-w /etc/sudoers
 WORKDIR /var/www
-ENV BUNDLE_APP_CONFIG="/var/www/.bundle" TERM="xterm"
+ENV TERM="xterm"
 EXPOSE 3000
 USER debian
 ENTRYPOINT ["/usr/bin/dumb-init"]

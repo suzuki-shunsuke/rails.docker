@@ -13,7 +13,7 @@ Docker Hub Repository: https://hub.docker.com/r/suzukishunsuke/rails/
 * ENV
   * BUNDLE_APP_CONFIG: "/var/www/.bundle"
   * TERM="xterm"
-* USER: debian(uid=1000, group=sudo, nopassword)
+* USER: root
 
 ```
 $ docker run -di --name rails -p 3000:3000 -v (rails application root directory):/var/www suzukishunsuke/rails:1.0.0 sh

@@ -6,7 +6,6 @@ RUN apt-get update && \
     rm dumb-init_1.1.1_amd64.deb && \
     mkdir /var/www && \
     rm -rf /var/lib/apt/lists/*
-VOLUME /var/www /var/log
 COPY sudoers /etc/
 RUN chmod a-w /etc/sudoers
 WORKDIR /var/www
